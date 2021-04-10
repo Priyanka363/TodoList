@@ -35,7 +35,8 @@
     <div class="alert alert-success"> CREATE ACCOUNT </div>
     <div class="p-4">
     <form method="post" action="/signup/">
-    {{ form.as_ul  }}
+    {% csrf_token %}
+    {{ form.as_p }}
     <hr>
     <input class="btn btn-success" type="submit" value="CREATE">
     </form>
