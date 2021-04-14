@@ -3,12 +3,15 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login as login_acc
 from django.views.decorators.csrf import csrf_protect
-
+from todoAPP.forms import add_todo
+from todoAPP.models import List 
 # Create your views here.
 @csrf_protect
 def home(request):
-  #print('Hello')
-  return render(request, 'home.html')
+  form=add_todo()
+  data_todo=List.objects.all()
+  context={'form':form,'data_todo':data_todo}
+  return render(request, 'home.html',context=context)
 
 @csrf_protect
 def login(request):
@@ -54,3 +57,15 @@ def signup(request):
         return redirect('login')
     else:
       return render(request, 'signup.html', context=context)
+
+def todo_add(request):
+  if request.user.is_authenticated:
+    form=add_todo(request.POST)
+    context={'form':form}
+    if form.is_valid():
+      todo=form.save(commit=False)
+      todo.user=request.user
+      todo.save()
+      return redirect("index")
+    else:
+      return render(request, 'home.html', context=context)
