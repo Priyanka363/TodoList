@@ -1,0 +1,20 @@
+{% extends 'extendss.html' %}
+{% block content %}
+<div class="container pt-5">
+<div class="card p-0 mt-4 mx-auto shadow" style="width:40em;">
+  <div class="card-body">
+    <a href="/"><div class="text-right"> Back </div> </a>
+    <h2 class="card-title"> ADD TODO </h2>
+  </div>
+  <div class="p-4">
+    <form action="/todo_add/" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <hr>
+      <input type="submit" value="ADD" class="btn btn-info">
+    </form>
+  </div>
+</div>
+</div>
+
+{% endblock %}

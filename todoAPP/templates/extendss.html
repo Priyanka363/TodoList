@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -6,10 +7,10 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
+    <title>Home</title>
   </head>
-  <body>
+  <body style="background-color:#fdc3b8;">
   <!-- nav bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
@@ -18,17 +19,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto w-100">
+        
+        {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Login</a>
+          <a class="nav-link" href="/logout">LogOut</a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
           
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/signup">SignUp</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">LogOut</a>
-        </li>
+        {% endif %}
       </ul>
       
     </div>

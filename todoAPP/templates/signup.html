@@ -1,15 +1,17 @@
 {% extends 'extendss.html' %}
 {% block content %}
 <div class="container pt-5">   
-    <div class="col-lg-4 shadow mx-auto">
-    <div class="alert alert-success"> CREATE ACCOUNT </div>
+    <div class="card shadow mx-auto" style="width:40rem;">
+    <div class="card-body"> 
+    <h2 class="card-title"> Create Account </h2>
     <div class="p-4">
-    <form method="post" action="/signup/">
+    <form method="post" action="/logout/">
     {% csrf_token %}
     {{ form.as_p }}
     <hr>
     <input class="btn btn-success" type="submit" value="CREATE">
     </form>
+    </div>
     </div>
     </div>
     </div>
